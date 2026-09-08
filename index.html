@@ -47,19 +47,19 @@
             50% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.8); }
         }
 
-        /* Hover & Click Wobble Animation */
-        @keyframes wobble {
-            0% { transform: scale(1) rotate(0deg); }
-            15% { transform: scale(1.02) rotate(-2deg); }
-            30% { transform: scale(1.02) rotate(2deg); }
-            45% { transform: scale(1.02) rotate(-1.5deg); }
-            60% { transform: scale(1.02) rotate(1.5deg); }
-            75% { transform: scale(1.01) rotate(-0.5deg); }
-            100% { transform: scale(1) rotate(0deg); }
+        /* Smooth Floating Hover Effect */
+        .float-hover {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        box-shadow 0.4s ease, 
+                        border-color 0.4s ease,
+                        background-color 0.3s ease;
         }
 
-        .wobble-hover:hover, .wobble-hover:active {
-            animation: wobble 0.6s ease-in-out;
+        .float-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(16, 185, 129, 0.6);
+            box-shadow: 0 20px 30px -10px rgba(16, 185, 129, 0.25),
+                        0 10px 15px -5px rgba(0, 0, 0, 0.5);
         }
 
         /* --- Header Section --- */
@@ -112,7 +112,8 @@
         }
 
         .btn-primary:hover {
-            box-shadow: 0 10px 25px var(--primary-glow);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 25px var(--primary-glow);
         }
 
         .btn-outline {
@@ -124,6 +125,7 @@
         .btn-outline:hover {
             border-color: var(--accent-blue);
             background: rgba(59, 130, 246, 0.1);
+            transform: translateY(-4px);
         }
 
         /* --- Container & Layout --- */
@@ -137,12 +139,8 @@
             margin-bottom: 4rem;
             animation: fadeInUp 0.8s ease-out;
             padding: 1.5rem;
-            border-radius: 12px;
-            transition: background 0.3s ease;
-        }
-
-        section:hover {
-            background: rgba(30, 41, 59, 0.3);
+            border-radius: 16px;
+            border: 1px solid transparent;
         }
 
         h2 {
@@ -177,11 +175,6 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
-        }
-
-        .card:hover {
-            border-color: rgba(16, 185, 129, 0.5);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
         }
 
         .card h3 {
@@ -225,7 +218,7 @@
         .skills-list li {
             background: var(--bg-card);
             color: var(--text-main);
-            padding: 0.5rem 1.2rem;
+            padding: 0.6rem 1.3rem;
             border-radius: 30px;
             font-weight: 500;
             font-size: 0.9rem;
@@ -236,7 +229,8 @@
         .skills-list li:hover {
             background: var(--primary);
             color: #ffffff;
-            box-shadow: 0 5px 15px var(--primary-glow);
+            border-color: var(--primary);
+            box-shadow: 0 8px 20px var(--primary-glow);
         }
 
         /* --- Work Experience Stack --- */
@@ -326,14 +320,14 @@
         <h1>Azeem Uddin</h1>
         <p>Shopify Developer & E-commerce Specialist</p>
         <div class="btn-group">
-            <a href="mailto:haikelazeem@gmail.com" class="btn btn-primary wobble-hover">Email Me</a>
-            <a href="https://linkedin.com" target="_blank" class="btn btn-outline wobble-hover">LinkedIn Profile</a>
+            <a href="mailto:haikelazeem@gmail.com" class="btn btn-primary">Email Me</a>
+            <a href="https://linkedin.com" target="_blank" class="btn btn-outline">LinkedIn Profile</a>
         </div>
     </header>
 
     <div class="container">
         
-        <section class="wobble-hover">
+        <section class="float-hover">
             <h2>About Me</h2>
             <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 850px;">
                 I build, optimize, and scale high-converting Shopify stores. Specialized in theme customization, store speed, and technical e-commerce SEO, I combine client communication and operations experience to elevate storefront performance and client sales.
@@ -344,7 +338,7 @@
             <h2>Featured Projects</h2>
             <div class="grid">
                 
-                <div class="card wobble-hover">
+                <div class="card float-hover">
                     <h3>TrendBasket.us</h3>
                     <span class="card-tag">Dropshipping & Scaled Retail</span>
                     <p>US-based Shopify storefront optimized for high conversion rates and multi-category layout efficiency.</p>
@@ -355,7 +349,7 @@
                     </ul>
                 </div>
 
-                <div class="card wobble-hover">
+                <div class="card float-hover">
                     <h3>CraftsByMoon</h3>
                     <span class="card-tag">Artisanal & Home Decor</span>
                     <p>Custom Shopify build featuring story-driven product layouts, cultural craftsmanship, and high buyer trust.</p>
@@ -366,7 +360,7 @@
                     </ul>
                 </div>
 
-                <div class="card wobble-hover">
+                <div class="card float-hover">
                     <h3>North Fusion</h3>
                     <span class="card-tag">Subscription & FMCG</span>
                     <p>Premium dry fruits and organic products store engineered for repeat subscription revenue.</p>
@@ -384,7 +378,7 @@
             <h2>Work Experience</h2>
             <div class="timeline">
 
-                <div class="exp-card wobble-hover">
+                <div class="exp-card float-hover">
                     <h3>Shopify Developer — Lucarat</h3>
                     <div class="company">Current Role</div>
                     <ul>
@@ -394,7 +388,7 @@
                     </ul>
                 </div>
 
-                <div class="exp-card wobble-hover">
+                <div class="exp-card float-hover">
                     <h3>Shopify Developer & Store Manager</h3>
                     <div class="company">Ladyfinger Software House | Oct 2023 – May 2024</div>
                     <ul>
@@ -404,7 +398,7 @@
                     </ul>
                 </div>
 
-                <div class="exp-card wobble-hover">
+                <div class="exp-card float-hover">
                     <h3>Sales Associate / Sales Executive</h3>
                     <div class="company">ABTACH LTD | Jun 2022 – Aug 2023</div>
                     <ul>
@@ -413,7 +407,7 @@
                     </ul>
                 </div>
 
-                <div class="exp-card wobble-hover">
+                <div class="exp-card float-hover">
                     <h3>Customer Service Representative & OJT Trainer</h3>
                     <div class="company">ibex | Mar 2021 – Jun 2023</div>
                     <ul>
@@ -422,7 +416,7 @@
                     </ul>
                 </div>
 
-                <div class="exp-card wobble-hover">
+                <div class="exp-card float-hover">
                     <h3>Intern (Shopify Operations)</h3>
                     <div class="company">Digitacom | Jan 2019 – Dec 2019</div>
                     <ul>
@@ -437,20 +431,20 @@
         <section>
             <h2>Core Skills</h2>
             <ul class="skills-list">
-                <li class="wobble-hover">Shopify Development</li>
-                <li class="wobble-hover">Theme Customization</li>
-                <li class="wobble-hover">E-commerce SEO</li>
-                <li class="wobble-hover">Conversion Rate Optimization (CRO)</li>
-                <li class="wobble-hover">Product Cataloging</li>
-                <li class="wobble-hover">Klaviyo Automation</li>
-                <li class="wobble-hover">Lead Generation</li>
-                <li class="wobble-hover">Customer Support / CRM</li>
+                <li class="float-hover">Shopify Development</li>
+                <li class="float-hover">Theme Customization</li>
+                <li class="float-hover">E-commerce SEO</li>
+                <li class="float-hover">Conversion Rate Optimization (CRO)</li>
+                <li class="float-hover">Product Cataloging</li>
+                <li class="float-hover">Klaviyo Automation</li>
+                <li class="float-hover">Lead Generation</li>
+                <li class="float-hover">Customer Support / CRM</li>
             </ul>
         </section>
 
         <section>
             <h2>Get In Touch</h2>
-            <div class="contact-card wobble-hover">
+            <div class="contact-card float-hover">
                 <div class="contact-item">
                     <h4>Email</h4>
                     <a href="mailto:haikelazeem@gmail.com">haikelazeem@gmail.com</a>
