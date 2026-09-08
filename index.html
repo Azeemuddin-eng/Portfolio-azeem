@@ -6,15 +6,15 @@
     <title>Azeem Uddin | Shopify Developer & E-commerce Specialist</title>
     <style>
         :root {
-            --bg-dark: #0f172a;
-            --bg-card: #1e293b;
+            --bg-dark: #0b0f19;
+            --bg-card: #151d2a;
             --primary: #10b981; /* Shopify Emerald */
-            --primary-glow: rgba(16, 185, 129, 0.4);
+            --primary-glow: rgba(16, 185, 129, 0.35);
             --accent-purple: #8b5cf6;
             --accent-blue: #3b82f6;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --border: #334155;
+            --border: #232d3f;
         }
 
         * {
@@ -44,27 +44,48 @@
 
         @keyframes pulseGlow {
             0%, 100% { box-shadow: 0 0 15px var(--primary-glow); }
-            50% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.8); }
+            50% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.7); }
         }
 
-        /* Smooth Floating Hover Effect */
-        .float-hover {
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-                        box-shadow 0.4s ease, 
-                        border-color 0.4s ease,
-                        background-color 0.3s ease;
+        /* Modern Hover Card Styling */
+        .interactive-card {
+            background: var(--bg-card);
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+                        box-shadow 0.4s ease,
+                        border-color 0.4s ease;
+            cursor: pointer;
         }
 
-        .float-hover:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(16, 185, 129, 0.6);
-            box-shadow: 0 20px 30px -10px rgba(16, 185, 129, 0.25),
-                        0 10px 15px -5px rgba(0, 0, 0, 0.5);
+        .interactive-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent-purple));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: rgba(16, 185, 129, 0.5);
+            box-shadow: 0 15px 35px -10px var(--primary-glow),
+                        0 8px 20px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        .interactive-card:hover::before {
+            opacity: 1;
         }
 
         /* --- Header Section --- */
         header {
-            background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
+            background: radial-gradient(circle at top, #1e293b 0%, #0b0f19 100%);
             padding: 5rem 2rem 4rem;
             text-align: center;
             border-bottom: 1px solid var(--border);
@@ -112,8 +133,8 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 12px 25px var(--primary-glow);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 25px var(--primary-glow);
         }
 
         .btn-outline {
@@ -125,10 +146,10 @@
         .btn-outline:hover {
             border-color: var(--accent-blue);
             background: rgba(59, 130, 246, 0.1);
-            transform: translateY(-4px);
+            transform: translateY(-3px);
         }
 
-        /* --- Container & Layout --- */
+        /* --- Layout Container --- */
         .container {
             max-width: 1050px;
             margin: 0 auto;
@@ -138,9 +159,6 @@
         section {
             margin-bottom: 4rem;
             animation: fadeInUp 0.8s ease-out;
-            padding: 1.5rem;
-            border-radius: 16px;
-            border: 1px solid transparent;
         }
 
         h2 {
@@ -168,13 +186,7 @@
         }
 
         .card {
-            background: var(--bg-card);
-            border-radius: 12px;
             padding: 1.75rem;
-            border: 1px solid var(--border);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
         }
 
         .card h3 {
@@ -207,7 +219,7 @@
             font-size: 0.9rem;
         }
 
-        /* --- Skills Badges --- */
+        /* --- Skills Pills --- */
         .skills-list {
             display: flex;
             flex-wrap: wrap;
@@ -223,6 +235,7 @@
             font-weight: 500;
             font-size: 0.9rem;
             border: 1px solid var(--border);
+            transition: all 0.3s ease;
             cursor: pointer;
         }
 
@@ -230,10 +243,11 @@
             background: var(--primary);
             color: #ffffff;
             border-color: var(--primary);
+            transform: translateY(-3px) scale(1.05);
             box-shadow: 0 8px 20px var(--primary-glow);
         }
 
-        /* --- Work Experience Stack --- */
+        /* --- Timeline Stack --- */
         .timeline {
             display: flex;
             flex-direction: column;
@@ -241,12 +255,8 @@
         }
 
         .exp-card {
-            background: var(--bg-card);
-            border-radius: 12px;
             padding: 1.75rem;
-            border: 1px solid var(--border);
             border-left: 4px solid var(--primary);
-            cursor: pointer;
         }
 
         .exp-card:hover {
@@ -271,11 +281,8 @@
             font-size: 0.95rem;
         }
 
-        /* --- Contact Box --- */
+        /* --- Contact Card --- */
         .contact-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
             padding: 2rem;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -307,7 +314,7 @@
         footer {
             text-align: center;
             padding: 2.5rem;
-            background: #090d16;
+            background: #060911;
             color: var(--text-muted);
             font-size: 0.9rem;
             border-top: 1px solid var(--border);
@@ -327,10 +334,10 @@
 
     <div class="container">
         
-        <section class="float-hover">
+        <section class="interactive-card" style="padding: 2rem;">
             <h2>About Me</h2>
             <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 850px;">
-                I build, optimize, and scale high-converting Shopify stores. Specialized in theme customization, store speed, and technical e-commerce SEO, I combine client communication and operations experience to elevate storefront performance and client sales.
+                I build, optimize, and scale high-converting Shopify stores[cite: 1, 2]. Specialized in theme customization, store speed, and technical e-commerce SEO, I combine client communication and operations experience to elevate storefront performance and client sales[cite: 1, 2].
             </p>
         </section>
 
@@ -338,36 +345,36 @@
             <h2>Featured Projects</h2>
             <div class="grid">
                 
-                <div class="card float-hover">
+                <div class="card interactive-card">
                     <h3>TrendBasket.us</h3>
                     <span class="card-tag">Dropshipping & Scaled Retail</span>
-                    <p>US-based Shopify storefront optimized for high conversion rates and multi-category layout efficiency.</p>
+                    <p>US-based Shopify storefront optimized for high conversion rates and multi-category layout efficiency[cite: 1].</p>
                     <ul>
-                        <li>Custom theme setup & mobile performance</li>
-                        <li>Technical SEO & speed tuning</li>
-                        <li>Klaviyo cart recovery email automation</li>
+                        <li>Custom theme setup & mobile performance[cite: 1]</li>
+                        <li>Technical SEO & speed tuning[cite: 1]</li>
+                        <li>Klaviyo cart recovery email automation[cite: 1]</li>
                     </ul>
                 </div>
 
-                <div class="card float-hover">
+                <div class="card interactive-card">
                     <h3>CraftsByMoon</h3>
                     <span class="card-tag">Artisanal & Home Decor</span>
-                    <p>Custom Shopify build featuring story-driven product layouts, cultural craftsmanship, and high buyer trust.</p>
+                    <p>Custom Shopify build featuring story-driven product layouts, cultural craftsmanship, and high buyer trust[cite: 1].</p>
                     <ul>
-                        <li>Multilingual UI support (Urdu/English)</li>
-                        <li>Social-first commerce integration</li>
-                        <li>Custom checkout trust triggers</li>
+                        <li>Multilingual UI support (Urdu/English)[cite: 1]</li>
+                        <li>Social-first commerce integration[cite: 1]</li>
+                        <li>Custom checkout trust triggers[cite: 1]</li>
                     </ul>
                 </div>
 
-                <div class="card float-hover">
+                <div class="card interactive-card">
                     <h3>North Fusion</h3>
                     <span class="card-tag">Subscription & FMCG</span>
-                    <p>Premium dry fruits and organic products store engineered for repeat subscription revenue.</p>
+                    <p>Premium dry fruits and organic products store engineered for repeat subscription revenue[cite: 1].</p>
                     <ul>
-                        <li>Subscription engine UI integration</li>
-                        <li>SEO-optimized catalog structure</li>
-                        <li>Custom gift hamper checkout features</li>
+                        <li>Subscription engine UI integration[cite: 1]</li>
+                        <li>SEO-optimized catalog structure[cite: 1]</li>
+                        <li>Custom gift hamper checkout features[cite: 1]</li>
                     </ul>
                 </div>
 
@@ -378,50 +385,50 @@
             <h2>Work Experience</h2>
             <div class="timeline">
 
-                <div class="exp-card float-hover">
+                <div class="exp-card interactive-card">
                     <h3>Shopify Developer — Lucarat</h3>
                     <div class="company">Current Role</div>
                     <ul>
-                        <li>Build and customize Shopify themes for client stores.</li>
-                        <li>Manage end-to-end store setup including listings, apps, and checkout flows.</li>
-                        <li>Run e-commerce SEO audits to improve organic traffic.</li>
+                        <li>Build and customize Shopify themes for client stores[cite: 1].</li>
+                        <li>Manage end-to-end store setup including listings, apps, and checkout flows[cite: 1].</li>
+                        <li>Run e-commerce SEO audits to improve organic traffic[cite: 1].</li>
                     </ul>
                 </div>
 
-                <div class="exp-card float-hover">
+                <div class="exp-card interactive-card">
                     <h3>Shopify Developer & Store Manager</h3>
                     <div class="company">Ladyfinger Software House | Oct 2023 – May 2024</div>
                     <ul>
-                        <li>Designed, customized, and launched 4+ Shopify stores end-to-end.</li>
-                        <li>Executed market research and competitor positioning for trending products.</li>
-                        <li>Implemented technical SEO and site speed fixes to increase conversion rates.</li>
+                        <li>Designed, customized, and launched 4+ Shopify stores end-to-end[cite: 1, 2].</li>
+                        <li>Executed market research and competitor positioning for trending products[cite: 1].</li>
+                        <li>Implemented technical SEO and site speed fixes to increase conversion rates[cite: 1, 2].</li>
                     </ul>
                 </div>
 
-                <div class="exp-card float-hover">
+                <div class="exp-card interactive-card">
                     <h3>Sales Associate / Sales Executive</h3>
                     <div class="company">ABTACH LTD | Jun 2022 – Aug 2023</div>
                     <ul>
-                        <li>Generated sales leads through outreach and delivered tailored product demos.</li>
-                        <li>Achieved a 10% increase in overall sales during tenure through relationship building.</li>
+                        <li>Generated sales leads through outreach and delivered tailored product demos[cite: 1, 2].</li>
+                        <li>Achieved a 10% increase in overall sales during tenure through relationship building[cite: 1, 2].</li>
                     </ul>
                 </div>
 
-                <div class="exp-card float-hover">
+                <div class="exp-card interactive-card">
                     <h3>Customer Service Representative & OJT Trainer</h3>
                     <div class="company">ibex | Mar 2021 – Jun 2023</div>
                     <ul>
-                        <li>Resolved complex inquiries, trained new hires (OJT Trainer), and served as Subject Matter Expert.</li>
-                        <li>Awarded the "Star Trainee" badge for outstanding performance and resolution metrics.</li>
+                        <li>Resolved complex inquiries, trained new hires (OJT Trainer), and served as Subject Matter Expert[cite: 2].</li>
+                        <li>Awarded the "Star Trainee" badge for outstanding performance and resolution metrics[cite: 2].</li>
                     </ul>
                 </div>
 
-                <div class="exp-card float-hover">
+                <div class="exp-card interactive-card">
                     <h3>Intern (Shopify Operations)</h3>
                     <div class="company">Digitacom | Jan 2019 – Dec 2019</div>
                     <ul>
-                        <li>Assisted with Shopify store setups, theme selections, layout customization, and product uploads.</li>
-                        <li>Supported social media marketing campaigns and store performance reporting.</li>
+                        <li>Assisted with Shopify store setups, theme selections, layout customization, and product uploads[cite: 1].</li>
+                        <li>Supported social media marketing campaigns and store performance reporting[cite: 1].</li>
                     </ul>
                 </div>
 
@@ -431,20 +438,20 @@
         <section>
             <h2>Core Skills</h2>
             <ul class="skills-list">
-                <li class="float-hover">Shopify Development</li>
-                <li class="float-hover">Theme Customization</li>
-                <li class="float-hover">E-commerce SEO</li>
-                <li class="float-hover">Conversion Rate Optimization (CRO)</li>
-                <li class="float-hover">Product Cataloging</li>
-                <li class="float-hover">Klaviyo Automation</li>
-                <li class="float-hover">Lead Generation</li>
-                <li class="float-hover">Customer Support / CRM</li>
+                <li>Shopify Development</li>
+                <li>Theme Customization</li>
+                <li>E-commerce SEO</li>
+                <li>Conversion Rate Optimization (CRO)</li>
+                <li>Product Cataloging</li>
+                <li>Klaviyo Automation</li>
+                <li>Lead Generation</li>
+                <li>Customer Support / CRM</li>
             </ul>
         </section>
 
         <section>
             <h2>Get In Touch</h2>
-            <div class="contact-card float-hover">
+            <div class="contact-card interactive-card">
                 <div class="contact-item">
                     <h4>Email</h4>
                     <a href="mailto:haikelazeem@gmail.com">haikelazeem@gmail.com</a>
