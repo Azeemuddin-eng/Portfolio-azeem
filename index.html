@@ -6,15 +6,15 @@
     <title>Azeem Uddin | Shopify Developer & E-commerce Specialist</title>
     <style>
         :root {
-            --bg-dark: #0b0f19;
-            --bg-card: #151d2a;
-            --primary: #10b981; /* Shopify Emerald */
-            --primary-glow: rgba(16, 185, 129, 0.35);
-            --accent-purple: #8b5cf6;
-            --accent-blue: #3b82f6;
+            --bg-dark: #080711;
+            --bg-card: rgba(22, 19, 43, 0.7);
+            --primary: #00f2fe; /* Glowing Neon Cyan */
+            --primary-glow: rgba(0, 242, 254, 0.35);
+            --accent: #4facfe;
+            --purple-glow: #7f00ff;
             --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border: #232d3f;
+            --text-muted: #a0aec0;
+            --border: rgba(255, 255, 255, 0.1);
         }
 
         * {
@@ -29,12 +29,17 @@
             background-color: var(--bg-dark);
             line-height: 1.6;
             overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(127, 0, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(0, 242, 254, 0.12) 0%, transparent 40%);
+            background-attachment: fixed;
         }
 
         /* --- Keyframe Animations --- */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes gradientText {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         @keyframes fadeInUp {
@@ -42,128 +47,100 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 15px var(--primary-glow); }
-            50% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.7); }
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
         }
 
-        /* Modern Hover Card Styling */
-        .interactive-card {
-            background: var(--bg-card);
-            border-radius: 14px;
-            border: 1px solid var(--border);
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
-                        box-shadow 0.4s ease,
-                        border-color 0.4s ease;
-            cursor: pointer;
-        }
-
-        .interactive-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--accent-purple));
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .interactive-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            border-color: rgba(16, 185, 129, 0.5);
-            box-shadow: 0 15px 35px -10px var(--primary-glow),
-                        0 8px 20px -5px rgba(0, 0, 0, 0.5);
-        }
-
-        .interactive-card:hover::before {
-            opacity: 1;
-        }
-
-        /* --- Header Section --- */
+        /* --- Header / Hero Section --- */
         header {
-            background: radial-gradient(circle at top, #1e293b 0%, #0b0f19 100%);
-            padding: 5rem 2rem 4rem;
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            border-bottom: 1px solid var(--border);
+            padding: 2rem;
+            position: relative;
         }
 
-        header h1 {
-            font-size: 3rem;
+        .animated-title {
+            font-size: 3.5rem;
             font-weight: 800;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            margin-bottom: 0.75rem;
+            background: linear-gradient(-45deg, #00f2fe, #4facfe, #00c6ff, #7f00ff);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: fadeInDown 0.8s ease-out;
+            animation: gradientText 6s ease infinite, fadeInUp 0.8s ease-out;
         }
 
-        header p {
-            color: var(--primary);
-            font-size: 1.25rem;
-            font-weight: 600;
+        .animated-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-muted);
             margin-bottom: 2rem;
-            animation: fadeInDown 1s ease-out;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            animation: fadeInUp 1s ease-out;
         }
 
         .btn-group {
             display: flex;
-            justify-content: center;
+            gap: 1.25rem;
             flex-wrap: wrap;
-            gap: 1rem;
+            justify-content: center;
             animation: fadeInUp 1.2s ease-out;
         }
 
         .btn {
             display: inline-block;
-            padding: 0.85rem 1.75rem;
+            padding: 0.9rem 2rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
+            font-size: 1rem;
             transition: all 0.3s ease;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, #059669 100%);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--purple-glow) 100%);
             color: #ffffff;
-            animation: pulseGlow 3s infinite;
+            box-shadow: 0 10px 20px rgba(127, 0, 255, 0.3);
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 10px 25px var(--primary-glow);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0, 242, 254, 0.4);
         }
 
         .btn-outline {
             background: transparent;
             color: #ffffff;
             border: 2px solid var(--border);
+            backdrop-filter: blur(10px);
         }
 
         .btn-outline:hover {
-            border-color: var(--accent-blue);
-            background: rgba(59, 130, 246, 0.1);
-            transform: translateY(-3px);
+            border-color: var(--primary);
+            background: rgba(0, 242, 254, 0.1);
+            transform: translateY(-4px);
         }
 
         /* --- Layout Container --- */
         .container {
-            max-width: 1050px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 4rem 1.5rem;
+            padding: 2rem 1.5rem 5rem;
         }
 
         section {
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
             animation: fadeInUp 0.8s ease-out;
         }
 
         h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
             display: inline-block;
             position: relative;
         }
@@ -171,80 +148,79 @@
         h2::after {
             content: '';
             display: block;
-            width: 50%;
+            width: 60%;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent-blue));
+            background: linear-gradient(90deg, var(--primary), var(--purple-glow));
             border-radius: 2px;
-            margin-top: 6px;
+            margin-top: 8px;
+        }
+
+        /* --- Glassmorphism Card Style --- */
+        .glass-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: rgba(0, 242, 254, 0.5);
+            box-shadow: 0 20px 40px -15px var(--primary-glow);
+        }
+
+        /* --- About Section --- */
+        .about-card {
+            padding: 2.5rem;
+        }
+
+        .about-card p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            line-height: 1.8;
         }
 
         /* --- Projects Grid --- */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.75rem;
         }
 
-        .card {
-            padding: 1.75rem;
-        }
-
-        .card h3 {
-            font-size: 1.3rem;
-            color: #ffffff;
-            margin-bottom: 0.4rem;
-        }
-
-        .card-tag {
-            display: inline-block;
-            background: rgba(139, 92, 246, 0.15);
-            color: var(--accent-purple);
-            font-size: 0.8rem;
-            font-weight: 600;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-        }
-
-        .card p {
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .card ul {
-            margin-left: 1.2rem;
-            color: var(--text-main);
-            font-size: 0.9rem;
-        }
-
-        /* --- Skills Pills --- */
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            list-style: none;
-        }
-
-        .skills-list li {
-            background: var(--bg-card);
-            color: var(--text-main);
-            padding: 0.6rem 1.3rem;
-            border-radius: 30px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
+        .project-card {
+            padding: 2rem;
             cursor: pointer;
         }
 
-        .skills-list li:hover {
-            background: var(--primary);
+        .project-card h3 {
+            font-size: 1.4rem;
             color: #ffffff;
-            border-color: var(--primary);
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 20px var(--primary-glow);
+            margin-bottom: 0.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 1.2rem;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+        }
+
+        .project-card p {
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+        }
+
+        .project-card ul {
+            margin-left: 1.2rem;
+            color: var(--text-main);
+            font-size: 0.9rem;
         }
 
         /* --- Timeline Stack --- */
@@ -255,23 +231,19 @@
         }
 
         .exp-card {
-            padding: 1.75rem;
+            padding: 2rem;
             border-left: 4px solid var(--primary);
-        }
-
-        .exp-card:hover {
-            border-left-color: var(--accent-blue);
         }
 
         .exp-card h3 {
             color: #ffffff;
-            font-size: 1.25rem;
+            font-size: 1.3rem;
         }
 
         .exp-card .company {
             color: var(--primary);
             font-weight: 600;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.8rem;
             font-size: 0.95rem;
         }
 
@@ -281,32 +253,64 @@
             font-size: 0.95rem;
         }
 
-        /* --- Contact Card --- */
-        .contact-card {
-            padding: 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            text-align: center;
+        /* --- Skills Pills --- */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+            list-style: none;
         }
 
-        .contact-item h4 {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .contact-item a {
-            color: #ffffff;
+        .skills-list li {
+            background: var(--bg-card);
+            color: var(--text-main);
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
             font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skills-list li:hover {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--purple-glow) 100%);
+            color: #ffffff;
+            border-color: transparent;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 10px 20px var(--primary-glow);
+        }
+
+        /* --- Contact Cards --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-box {
+            padding: 2rem;
+            text-align: center;
             text-decoration: none;
-            font-size: 1.05rem;
+            display: block;
+        }
+
+        .contact-box h4 {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-box p {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.1rem;
             transition: color 0.3s ease;
         }
 
-        .contact-item a:hover {
+        .contact-box:hover p {
             color: var(--primary);
         }
 
@@ -314,7 +318,7 @@
         footer {
             text-align: center;
             padding: 2.5rem;
-            background: #060911;
+            background: rgba(8, 7, 17, 0.9);
             color: var(--text-muted);
             font-size: 0.9rem;
             border-top: 1px solid var(--border);
@@ -324,57 +328,59 @@
 <body>
 
     <header>
-        <h1>Azeem Uddin</h1>
-        <p>Shopify Developer & E-commerce Specialist</p>
+        <h1 class="animated-title">Azeem Uddin</h1>
+        <p class="animated-subtitle">Shopify Developer & E-commerce Specialist</p>
         <div class="btn-group">
-            <a href="mailto:haikelazeem@gmail.com" class="btn btn-primary">Email Me</a>
+            <a href="mailto:haikelazeem@gmail.com" class="btn btn-primary">Get In Touch</a>
             <a href="https://linkedin.com" target="_blank" class="btn btn-outline">LinkedIn Profile</a>
         </div>
     </header>
 
     <div class="container">
         
-        <section class="interactive-card" style="padding: 2rem;">
+        <section>
             <h2>About Me</h2>
-            <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 850px;">
-                I build, optimize, and scale high-converting Shopify stores[cite: 1, 2]. Specialized in theme customization, store speed, and technical e-commerce SEO, I combine client communication and operations experience to elevate storefront performance and client sales[cite: 1, 2].
-            </p>
+            <div class="glass-card about-card">
+                <p>
+                    I build, optimize, and scale high-converting Shopify stores. Specialized in theme customization, store speed, and technical e-commerce SEO, I combine client communication and operations experience to elevate storefront performance and client sales.
+                </p>
+            </div>
         </section>
 
         <section>
             <h2>Featured Projects</h2>
             <div class="grid">
                 
-                <div class="card interactive-card">
+                <div class="glass-card project-card">
                     <h3>TrendBasket.us</h3>
-                    <span class="card-tag">Dropshipping & Scaled Retail</span>
-                    <p>US-based Shopify storefront optimized for high conversion rates and multi-category layout efficiency[cite: 1].</p>
+                    <span class="badge">Dropshipping & Scaled Retail</span>
+                    <p>US-based Shopify storefront optimized for high conversion rates and multi-category layout efficiency.</p>
                     <ul>
-                        <li>Custom theme setup & mobile performance[cite: 1]</li>
-                        <li>Technical SEO & speed tuning[cite: 1]</li>
-                        <li>Klaviyo cart recovery email automation[cite: 1]</li>
+                        <li>Custom theme setup & mobile performance</li>
+                        <li>Technical SEO & speed tuning</li>
+                        <li>Klaviyo cart recovery email automation</li>
                     </ul>
                 </div>
 
-                <div class="card interactive-card">
+                <div class="glass-card project-card">
                     <h3>CraftsByMoon</h3>
-                    <span class="card-tag">Artisanal & Home Decor</span>
-                    <p>Custom Shopify build featuring story-driven product layouts, cultural craftsmanship, and high buyer trust[cite: 1].</p>
+                    <span class="badge">Artisanal & Home Decor</span>
+                    <p>Custom Shopify build featuring story-driven product layouts, cultural craftsmanship, and high buyer trust.</p>
                     <ul>
-                        <li>Multilingual UI support (Urdu/English)[cite: 1]</li>
-                        <li>Social-first commerce integration[cite: 1]</li>
-                        <li>Custom checkout trust triggers[cite: 1]</li>
+                        <li>Multilingual UI support (Urdu/English)</li>
+                        <li>Social-first commerce integration</li>
+                        <li>Custom checkout trust triggers</li>
                     </ul>
                 </div>
 
-                <div class="card interactive-card">
+                <div class="glass-card project-card">
                     <h3>North Fusion</h3>
-                    <span class="card-tag">Subscription & FMCG</span>
-                    <p>Premium dry fruits and organic products store engineered for repeat subscription revenue[cite: 1].</p>
+                    <span class="badge">Subscription & FMCG</span>
+                    <p>Premium dry fruits and organic products store engineered for repeat subscription revenue.</p>
                     <ul>
-                        <li>Subscription engine UI integration[cite: 1]</li>
-                        <li>SEO-optimized catalog structure[cite: 1]</li>
-                        <li>Custom gift hamper checkout features[cite: 1]</li>
+                        <li>Subscription engine UI integration</li>
+                        <li>SEO-optimized catalog structure</li>
+                        <li>Custom gift hamper checkout features</li>
                     </ul>
                 </div>
 
@@ -385,50 +391,50 @@
             <h2>Work Experience</h2>
             <div class="timeline">
 
-                <div class="exp-card interactive-card">
+                <div class="glass-card exp-card">
                     <h3>Shopify Developer — Lucarat</h3>
                     <div class="company">Current Role</div>
                     <ul>
-                        <li>Build and customize Shopify themes for client stores[cite: 1].</li>
-                        <li>Manage end-to-end store setup including listings, apps, and checkout flows[cite: 1].</li>
-                        <li>Run e-commerce SEO audits to improve organic traffic[cite: 1].</li>
+                        <li>Build and customize Shopify themes for client stores.</li>
+                        <li>Manage end-to-end store setup including listings, apps, and checkout flows.</li>
+                        <li>Run e-commerce SEO audits to improve organic traffic.</li>
                     </ul>
                 </div>
 
-                <div class="exp-card interactive-card">
+                <div class="glass-card exp-card">
                     <h3>Shopify Developer & Store Manager</h3>
                     <div class="company">Ladyfinger Software House | Oct 2023 – May 2024</div>
                     <ul>
-                        <li>Designed, customized, and launched 4+ Shopify stores end-to-end[cite: 1, 2].</li>
-                        <li>Executed market research and competitor positioning for trending products[cite: 1].</li>
-                        <li>Implemented technical SEO and site speed fixes to increase conversion rates[cite: 1, 2].</li>
+                        <li>Designed, customized, and launched 4+ Shopify stores end-to-end.</li>
+                        <li>Executed market research and competitor positioning for trending products.</li>
+                        <li>Implemented technical SEO and site speed fixes to increase conversion rates.</li>
                     </ul>
                 </div>
 
-                <div class="exp-card interactive-card">
+                <div class="glass-card exp-card">
                     <h3>Sales Associate / Sales Executive</h3>
                     <div class="company">ABTACH LTD | Jun 2022 – Aug 2023</div>
                     <ul>
-                        <li>Generated sales leads through outreach and delivered tailored product demos[cite: 1, 2].</li>
-                        <li>Achieved a 10% increase in overall sales during tenure through relationship building[cite: 1, 2].</li>
+                        <li>Generated sales leads through outreach and delivered tailored product demos.</li>
+                        <li>Achieved a 10% increase in overall sales during tenure through relationship building.</li>
                     </ul>
                 </div>
 
-                <div class="exp-card interactive-card">
+                <div class="glass-card exp-card">
                     <h3>Customer Service Representative & OJT Trainer</h3>
                     <div class="company">ibex | Mar 2021 – Jun 2023</div>
                     <ul>
-                        <li>Resolved complex inquiries, trained new hires (OJT Trainer), and served as Subject Matter Expert[cite: 2].</li>
-                        <li>Awarded the "Star Trainee" badge for outstanding performance and resolution metrics[cite: 2].</li>
+                        <li>Resolved complex inquiries, trained new hires (OJT Trainer), and served as Subject Matter Expert.</li>
+                        <li>Awarded the "Star Trainee" badge for outstanding performance and resolution metrics.</li>
                     </ul>
                 </div>
 
-                <div class="exp-card interactive-card">
+                <div class="glass-card exp-card">
                     <h3>Intern (Shopify Operations)</h3>
                     <div class="company">Digitacom | Jan 2019 – Dec 2019</div>
                     <ul>
-                        <li>Assisted with Shopify store setups, theme selections, layout customization, and product uploads[cite: 1].</li>
-                        <li>Supported social media marketing campaigns and store performance reporting[cite: 1].</li>
+                        <li>Assisted with Shopify store setups, theme selections, layout customization, and product uploads.</li>
+                        <li>Supported social media marketing campaigns and store performance reporting.</li>
                     </ul>
                 </div>
 
@@ -451,19 +457,19 @@
 
         <section>
             <h2>Get In Touch</h2>
-            <div class="contact-card interactive-card">
-                <div class="contact-item">
+            <div class="contact-grid">
+                <a href="mailto:haikelazeem@gmail.com" class="glass-card contact-box">
                     <h4>Email</h4>
-                    <a href="mailto:haikelazeem@gmail.com">haikelazeem@gmail.com</a>
-                </div>
-                <div class="contact-item">
+                    <p>haikelazeem@gmail.com</p>
+                </a>
+                <a href="tel:+923418684784" class="glass-card contact-box">
                     <h4>Phone</h4>
-                    <a href="tel:+923418684784">+92 341 8684784</a>
-                </div>
-                <div class="contact-item">
+                    <p>+92 341 8684784</p>
+                </a>
+                <a href="https://linkedin.com" target="_blank" class="glass-card contact-box">
                     <h4>LinkedIn</h4>
-                    <a href="https://linkedin.com" target="_blank">Connect on LinkedIn</a>
-                </div>
+                    <p>Connect Profile</p>
+                </a>
             </div>
         </section>
 
